@@ -8,3 +8,17 @@ include_directories(
     firmware
     firmware/dsp
     firmware/tflm
+)
+
+add_executable(zakr_firmware
+    firmware/main.c
+    firmware/inference_pipeline.c
+    firmware/sensor_fusion.c
+    firmware/feature_extract.c
+    firmware/ring_buffer.c
+    firmware/pac_quality.c
+    firmware/cli_score.c
+    firmware/dsp/fft.c
+    firmware/dsp/filters.c
+    benchmark/benchmark_latency.c
+)
