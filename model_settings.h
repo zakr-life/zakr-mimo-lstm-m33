@@ -1,0 +1,8 @@
+#ifndef MODEL_SETTINGS_H
+#define MODEL_SETTINGS_H
+
+#define INPUT_DIM 60
+#define OUTPUT_CLASSES 4
+#define INFERENCE_WINDOW 10
+
+#endif
