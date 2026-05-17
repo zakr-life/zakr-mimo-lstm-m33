@@ -1,19 +1,20 @@
 #include "ring_buffer.h"
 
-static int8_t circular_buffer[
-    INPUT_TIMESTEPS * INPUT_FEATURES
-];
-
-static uint32_t write_index = 0;
-
-void ring_buffer_push(int8_t value)
+void rb_init(ring_buffer_t *rb)
 {
-    circular_buffer[write_index] = value;
+    rb->head = 0;
+    rb->tail = 0;
+}
 
-    write_index++;
+void rb_push(ring_buffer_t *rb, float value)
+{
+    rb->buffer[rb->head++] = value;
+    rb->head %= RB_SIZE;
+}
 
-    if(write_index >= INPUT_TIMESTEPS * INPUT_FEATURES)
-    {
-        write_index = 0;
-    }
+float rb_pop(ring_buffer_t *rb)
+{
+    float v = rb->buffer[rb->tail++];
+    rb->tail %= RB_SIZE;
+    return v;
 }
